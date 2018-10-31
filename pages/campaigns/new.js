@@ -21,14 +21,12 @@ class CampaignNew extends Component {
       const accounts = await web3.eth.getAccounts();
       await factory.methods
         .createCampaign(this.state.minimumContribution)
-        .send({
-          from: accounts[0]
-        });
+        .send({ from: accounts[0] });
       Router.pushRoute("/");
     } catch (err) {
-      this.setState({ loading: false, errorMessage: err.message });
+      this.setState({ errorMessage: err.message });
     }
-    this.setState({ loading: false, errorMessage: err.message });
+    this.setState({ loading: false });
   };
 
   render() {
