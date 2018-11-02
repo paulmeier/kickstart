@@ -37,6 +37,14 @@ class RequestIndex extends Component {
     });
   }
 
+  activeRequests() {
+    var active = 0;
+    this.props.requests.map((request, index) => {
+      if (!request.complete) active++;
+    });
+    return active;
+  }
+
   render() {
     const { Header, Row, HeaderCell, Body } = Table;
     return (
@@ -61,6 +69,11 @@ class RequestIndex extends Component {
           </Header>
           <Body>{this.renderRow()}</Body>
         </Table>
+        <div>{this.props.requestCount} total requests</div>
+        <div>{this.activeRequests()} active requests</div>
+        <div>
+          {this.props.requestCount - this.activeRequests()} completed requests
+        </div>
       </Layout>
     );
   }
